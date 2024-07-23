@@ -6,6 +6,7 @@ import axios from 'axios'
 import { ProductUrl } from '../../Api/endPoints'
 import ProductCard from '../../Component/Product/ProductCard'
 import Loader from '../../Component/Loader/Loader'
+import classes from'./Productdetail.module.css'
 const ProductDetail = () => {
   const [products, setproducts]=useState({})
   const {productId}=useParams()
@@ -23,7 +24,7 @@ axios.get(`${ProductUrl}/products/${productId}`).then((res)=>{
   },[])
   return (
     <Layout>
-      <div>
+      <div className={classes.ProductDetail}>
         {isLoading ? (
           <Loader />
         ) : (

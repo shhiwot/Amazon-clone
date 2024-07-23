@@ -10,22 +10,22 @@ import ProductCard from "../../Component/Product/ProductCard";
 import Loader from "../../Component/Loader/Loader";
 const Results = () => {
   const [results, setResults] = useState([]); // Initialize as undefined
-  const [isLoading, setisLoading] = useState(false);
+  const [isLoading, setLoading] = useState(false);
 
   const { categoryName } = useParams();
   console.log(categoryName);
   useEffect(() => {
-    setisLoading(true);
+    setLoading(true);
     axios
       .get(`${ProductUrl}/products/category/${categoryName}`)
       .then((res) => {
         setResults(res.data);
-        setisLoading(false);
+        setLoading(false);
       })
       .catch((err) => {
         console.log(err);
         setResults([]);
-        setisLoading(false);
+        setLoading(false);
       });
   }, [categoryName]);
   console.log(categoryName);

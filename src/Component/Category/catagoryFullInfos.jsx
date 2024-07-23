@@ -1,6 +1,6 @@
 
 import el_img from"./img/electronics.jpg"
-import jw_img from"./img/71NQYP1byUL._AC_SY695_.jpg"
+import jw_img from"./img/jewelry.jpg"
 import men_img from"./img/men'scloth.jpg"
 import wm_img from "./img/women'sdress.jpg"
 const category = [

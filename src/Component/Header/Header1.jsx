@@ -6,15 +6,17 @@ import classes from "./Header1.module.css";
 import LowerHeader from "./LowerHeader";
 import { Link } from "react-router-dom";
 import { DataContext } from "../DataProvider/DataProvider";
+import { auth } from "../../Utility/fireBase";
 const Header1 = () => {
   // const [state, dispatch] = useContext(DataContext);
   // console.log(state);
-  const [{ basket }, dispatch] = useContext(DataContext);
+  const [{user, basket }, dispatch] = useContext(DataContext);
   
   const totalItemsInBasket = basket.reduce(
     (count, item) => count + item.amount,
     0
   );
+  console.log(user);
   console.log(basket);
   console.log(basket.length);
   return (
@@ -39,7 +41,7 @@ const Header1 = () => {
               </div>
               <div>
                 <p>Deliver to</p>
-                <span>Ethiopa</span>
+                <span>USA</span>
               </div>
             </Link>
           </div>
@@ -63,9 +65,20 @@ const Header1 = () => {
               </select>
             </div>
             {/* {three components} */}
-            <Link to="/aouth">
-              <p>Sign In</p>
-              <span>Account & Lists</span>
+            <Link to={ !user&&"/aouth"}>
+              <div>
+                {user ? (
+                  <>
+                    <p>Hello {user?.email?.split("@")[0]}</p>
+                    <span onClick={()=>auth.signOut()}>Sign out</span>
+                  </>
+                ) : (
+                  <>
+                    <p>Hello Sign In</p>
+                    <span>Account & Lists</span>
+                  </>
+                )}
+              </div>
             </Link>
             {/* {orders} */}
             <Link to="/order">
