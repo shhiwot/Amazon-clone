@@ -17,7 +17,7 @@ const[loading,setloading]=useState(false)
         try {
           const ordersRef = collection(db, "users", user.uid, "orders");
           const q = query(ordersRef, orderBy("created", "desc"));
-          const unsubscribe = onSnapshot(q, (snapshot) => {
+          const querySnapshot = onSnapshot(q, (snapshot) => {
             console.log(snapshot);
             const fetchedOrders = snapshot.docs.map((doc) => ({
               id: doc.id,
@@ -26,7 +26,7 @@ const[loading,setloading]=useState(false)
             setOrders(fetchedOrders);
       setloading(false)
           });
-          return () => unsubscribe(); // Unsubscribe from snapshot listener on cleanup
+          return () => querySnapshot(); // Unsubscribe from snapshot listener on cleanup
         } catch (error) {
           console.error("Error fetching orders: ", error);
           setloading(false)

@@ -59,7 +59,7 @@ switch (action.type) {
   case Type.SET_USER:
     return {
       ...state,
-      user: action.user, //set data that puted in action
+      user: action.user, //set data that putted in action
     };
 
   default:
